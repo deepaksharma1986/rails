@@ -1,0 +1,17 @@
+
+
+Again, again, again. SQL is mostly about table references, not columns. Make use of them. Don’t be afraid of writing derived tables or other complex table references.
+A derived table is nothing but a subquery wrapped in parentheses.
+
+-- A derived table with an alias
+FROM (SELECT * FROM author) a
+
+
+-- Get authors' first and last names, and their age in days
+SELECT first_name, last_name, age
+FROM (
+  SELECT first_name, last_name, current_date - date_of_birth age
+  FROM author
+)
+-- If the age is greater than 10000 days
+WHERE age > 10000
